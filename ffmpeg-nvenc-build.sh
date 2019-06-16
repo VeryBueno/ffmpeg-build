@@ -42,11 +42,11 @@ Clone() {
     git pull
 }
 
-PKGS="autoconf automake libtool patch make cmake bzip2 unzip wget git mercurial cmake3"
+PKGS="autoconf automake libtool patch make cmake bzip2 unzip wget git mercurial"
 
 installAptLibs() {
     sudo apt-get update
-    sudo apt-get -y --force-yes install $PKGS \
+    sudo apt-get -y install $PKGS \
       build-essential pkg-config texi2html software-properties-common \
       libfreetype6-dev libgpac-dev libsdl1.2-dev libtheora-dev libva-dev \
       libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev zlib1g-dev
@@ -162,8 +162,7 @@ compileLibAom() {
     Clone https://aomedia.googlesource.com/aom
     mkdir ../aom_build
     cd ../aom_build
-    which cmake3 && PROG=cmake3 || PROG=cmake
-    $PROG -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$DEST_DIR" -DENABLE_SHARED=off -DENABLE_NASM=on ../aom
+    cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$DEST_DIR" -DENABLE_SHARED=off -DENABLE_NASM=on ../aom
     Make install
 }
 
